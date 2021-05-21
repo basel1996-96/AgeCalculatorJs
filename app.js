@@ -13,16 +13,64 @@
 
 // This functions should check the integrity of the parameters and pass true/false
 function checkParamsFn(year, month, day) {
-  // Write your code here
+  if (
+    Number.isInteger(year) &&
+    Number.isInteger(month) &&
+    Number.isInteger(day)
+  )
+    return true;
+  else return false;
 }
 
+// function checkParamsFn()
+ console.log(checkParamsFn(2010,12,6));
+
+
 // This functions checks if the person is or above 18 years of age, return true/false
+
+ 
+
+
+
+let date = new Date();
+let yearn = date.getYear() + 1900;
+let monthn = date.getMonth() + 1;
+let dayn = date.getDate();
+
+function ageCalculater (year, month, day) {
+  let dayPass, monthsPass, yearPass;
+  if (dayn - day > 0) dayPass = dayn - day;
+  else {
+    dayPass = 30 + (dayn - day);
+    monthn--;
+  }
+
+if (monthn - month > 0) monthsPass = monthn - month;
+  else {
+    monthsPass = 12 + (monthn - month);
+    yearn--;
+    
+  }
+
+  yearPass = yearn - year;
+
+  return yearPass;
+}
+
+ 
+
+
+ //console.log(checkOverEighteenFn(new Date(1995, 5, 21)));
+
+
 function checkOverEighteenFn(year, month, day) {
-  // Write your code here
+  return ageCalculater(year, month, day) >= 18;
 }
 
 function calculateAgeFn(year, month, day) {
-  // Write your code here
+  if (!checkParamsFn(year, month, day)) return "error: Invaled Input";
+  if (!checkOverEighteenFn(year, month, day)) return "error: under age ";
+  else return ageCalculater(year, month, day);
 }
 
 // Look at the naming of the functions. it looks like salwaBaqer, where
@@ -33,4 +81,4 @@ function calculateAgeFn(year, month, day) {
 // It's best practice to name your function as to what it does, or your variable
 // to what it holds.
 
-module.exports = calculateAgeFn;
+ module.exports = calculateAgeFn ;
